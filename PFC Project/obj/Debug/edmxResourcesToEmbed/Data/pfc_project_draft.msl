@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="pfc_project_draftModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="activity_record">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.activity_record">
+        <MappingFragment StoreEntitySet="activity_record">
+          <ScalarProperty Name="record_id" ColumnName="record_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="classes">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.class">
+        <MappingFragment StoreEntitySet="class">
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="class_schedule" ColumnName="class_schedule" />
+          <ScalarProperty Name="class_loc" ColumnName="class_loc" />
+          <ScalarProperty Name="class_starttime" ColumnName="class_starttime" />
+          <ScalarProperty Name="class_endtime" ColumnName="class_endtime" />
+          <ScalarProperty Name="rm_id" ColumnName="rm_id" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="classrooms">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.classroom">
+        <MappingFragment StoreEntitySet="classroom">
+          <ScalarProperty Name="rm_id" ColumnName="rm_id" />
+          <ScalarProperty Name="rm_capacity" ColumnName="rm_capacity" />
+          <ScalarProperty Name="equip_id" ColumnName="equip_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.employee">
+        <MappingFragment StoreEntitySet="employees">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="emp_name" ColumnName="emp_name" />
+          <ScalarProperty Name="emp_address" ColumnName="emp_address" />
+          <ScalarProperty Name="emp_phone" ColumnName="emp_phone" />
+          <ScalarProperty Name="emp_hiredate" ColumnName="emp_hiredate" />
+          <ScalarProperty Name="emp_position" ColumnName="emp_position" />
+          <ScalarProperty Name="emp_lasthiredate" ColumnName="emp_lasthiredate" />
+          <ScalarProperty Name="emp_other" ColumnName="emp_other" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipments">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.equipment">
+        <MappingFragment StoreEntitySet="equipment">
+          <ScalarProperty Name="equip_id" ColumnName="equip_id" />
+          <ScalarProperty Name="equip_serial" ColumnName="equip_serial" />
+          <ScalarProperty Name="equip_purchasedate" ColumnName="equip_purchasedate" />
+          <ScalarProperty Name="equip_lastmaintenance" ColumnName="equip_lastmaintenance" />
+          <ScalarProperty Name="equip_type" ColumnName="equip_type" />
+          <ScalarProperty Name="rm_id" ColumnName="rm_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipment_type">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.equipment_type">
+        <MappingFragment StoreEntitySet="equipment_type">
+          <ScalarProperty Name="equip_type" ColumnName="equip_type" />
+          <ScalarProperty Name="equip_description" ColumnName="equip_description" />
+          <ScalarProperty Name="equip_model" ColumnName="equip_model" />
+          <ScalarProperty Name="equip_maintenace_interval" ColumnName="equip_maintenace_interval" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fitness_course">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.fitness_course">
+        <MappingFragment StoreEntitySet="fitness_course">
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="course_name" ColumnName="course_name" />
+          <ScalarProperty Name="course_description" ColumnName="course_description" />
+          <ScalarProperty Name="course_category" ColumnName="course_category" />
+          <ScalarProperty Name="course_duration" ColumnName="course_duration" />
+          <ScalarProperty Name="course_prereq" ColumnName="course_prereq" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fitness_measure">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.fitness_measure">
+        <MappingFragment StoreEntitySet="fitness_measure">
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+          <ScalarProperty Name="fit_date" ColumnName="fit_date" />
+          <ScalarProperty Name="fit_BMI" ColumnName="fit_BMI" />
+          <ScalarProperty Name="fit_fat" ColumnName="fit_fat" />
+          <ScalarProperty Name="fit_weight" ColumnName="fit_weight" />
+          <ScalarProperty Name="document_id" ColumnName="document_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="instructors">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.instructor">
+        <MappingFragment StoreEntitySet="instructor">
+          <ScalarProperty Name="instructor_id" ColumnName="instructor_id" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="cert_exams" ColumnName="cert_exams" />
+          <ScalarProperty Name="cert_exam_date" ColumnName="cert_exam_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="items">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.item">
+        <MappingFragment StoreEntitySet="item">
+          <ScalarProperty Name="item_id" ColumnName="item_id" />
+          <ScalarProperty Name="item_description" ColumnName="item_description" />
+          <ScalarProperty Name="item_price" ColumnName="item_price" />
+          <ScalarProperty Name="item_inventory" ColumnName="item_inventory" />
+          <ScalarProperty Name="item_reorder" ColumnName="item_reorder" />
+          <ScalarProperty Name="vendorID" ColumnName="vendorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mem_type">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.mem_type">
+        <MappingFragment StoreEntitySet="mem_type">
+          <ScalarProperty Name="mem_type1" ColumnName="mem_type" />
+          <ScalarProperty Name="mem_fee" ColumnName="mem_fee" />
+          <ScalarProperty Name="mem_discount" ColumnName="mem_discount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="members">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.member">
+        <MappingFragment StoreEntitySet="members">
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+          <ScalarProperty Name="mem_name" ColumnName="mem_name" />
+          <ScalarProperty Name="mem_gender" ColumnName="mem_gender" />
+          <ScalarProperty Name="mem_phone" ColumnName="mem_phone" />
+          <ScalarProperty Name="mem_dob" ColumnName="mem_dob" />
+          <ScalarProperty Name="mem_datejoined" ColumnName="mem_datejoined" />
+          <ScalarProperty Name="mem_initialweight" ColumnName="mem_initialweight" />
+          <ScalarProperty Name="mem_address" ColumnName="mem_address" />
+          <ScalarProperty Name="mem_parent" ColumnName="mem_parent" />
+          <ScalarProperty Name="mem_type" ColumnName="mem_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.order">
+        <MappingFragment StoreEntitySet="order">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="order_placed" ColumnName="order_placed" />
+          <ScalarProperty Name="order_recieved" ColumnName="order_recieved" />
+          <ScalarProperty Name="order_item" ColumnName="order_item" />
+          <ScalarProperty Name="order_qty" ColumnName="order_qty" />
+          <ScalarProperty Name="order_qty_recieved" ColumnName="order_qty_recieved" />
+          <ScalarProperty Name="order_costperitem" ColumnName="order_costperitem" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="order_total" ColumnName="order_total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="return_transaction">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.return_transaction">
+        <MappingFragment StoreEntitySet="return_transaction">
+          <ScalarProperty Name="return_id" ColumnName="return_id" />
+          <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+          <ScalarProperty Name="return_hist" ColumnName="return_hist" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="session_record">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.session_record">
+        <MappingFragment StoreEntitySet="session_record">
+          <ScalarProperty Name="session_id" ColumnName="session_id" />
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="session_date" ColumnName="session_date" />
+          <ScalarProperty Name="instructor_id" ColumnName="instructor_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactions">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.transaction">
+        <MappingFragment StoreEntitySet="transaction">
+          <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+          <ScalarProperty Name="trans_date" ColumnName="trans_date" />
+          <ScalarProperty Name="item_id" ColumnName="item_id" />
+          <ScalarProperty Name="trans_quantity_purchased" ColumnName="trans_quantity_purchased" />
+          <ScalarProperty Name="trans_purchase_price" ColumnName="trans_purchase_price" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="trans_purchase_total" ColumnName="trans_purchase_total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vendors">
+      <EntityTypeMapping TypeName="pfc_project_draftModel.vendor">
+        <MappingFragment StoreEntitySet="vendor">
+          <ScalarProperty Name="vendor_ID" ColumnName="vendor_ID" />
+          <ScalarProperty Name="vendor_name" ColumnName="vendor_name" />
+          <ScalarProperty Name="vendor_address" ColumnName="vendor_address" />
+          <ScalarProperty Name="vendor_phone" ColumnName="vendor_phone" />
+          <ScalarProperty Name="vendor_fax" ColumnName="vendor_fax" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="pfc_project_draftModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

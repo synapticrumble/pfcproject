@@ -1,0 +1,684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pfc_project_draftModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="activity_record">
+    <Key>
+      <PropertyRef Name="record_id" />
+    </Key>
+    <Property Name="record_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="mem_id" Type="Int32" />
+    <NavigationProperty Name="member" Relationship="Self.FK__activity___mem_i__74AE54BC" FromRole="activity_record" ToRole="members" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="class_schedule" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="class_loc" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="class_starttime" Type="Time" Precision="7" />
+    <Property Name="class_endtime" Type="Time" Precision="7" />
+    <Property Name="rm_id" Type="Int32" />
+    <Property Name="course_id" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="fitness_course" Relationship="Self.FK__class__course_id__534D60F1" FromRole="class" ToRole="fitness_course" />
+    <NavigationProperty Name="classroom" Relationship="Self.FK__class__rm_id__52593CB8" FromRole="class" ToRole="classroom" />
+    <NavigationProperty Name="session_record" Relationship="Self.FK__session_r__class__59FA5E80" FromRole="class" ToRole="session_record" />
+  </EntityType>
+  <EntityType Name="classroom">
+    <Key>
+      <PropertyRef Name="rm_id" />
+    </Key>
+    <Property Name="rm_id" Type="Int32" Nullable="false" />
+    <Property Name="rm_capacity" Type="Int32" Nullable="false" />
+    <Property Name="equip_id" Type="Int32" />
+    <NavigationProperty Name="classes" Relationship="Self.FK__class__rm_id__52593CB8" FromRole="classroom" ToRole="class" />
+    <NavigationProperty Name="equipment" Relationship="Self.FK__classroom__equip__4D94879B" FromRole="classroom" ToRole="equipment" />
+    <NavigationProperty Name="equipments" Relationship="Self.FK__equipment__rm_id__4E88ABD4" FromRole="classroom" ToRole="equipment" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_name" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="emp_address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="emp_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="emp_hiredate" Type="DateTime" Precision="3" />
+    <Property Name="emp_position" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="emp_lasthiredate" Type="DateTime" Precision="3" />
+    <Property Name="emp_other" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="instructors" Relationship="Self.FK__instructo__emp_i__5629CD9C" FromRole="employees" ToRole="instructor" />
+    <NavigationProperty Name="orders" Relationship="Self.FK__order__emp_id__6383C8BA" FromRole="employees" ToRole="order" />
+    <NavigationProperty Name="transactions" Relationship="Self.FK__transacti__emp_i__68487DD7" FromRole="employees" ToRole="transaction" />
+  </EntityType>
+  <EntityType Name="equipment">
+    <Key>
+      <PropertyRef Name="equip_id" />
+    </Key>
+    <Property Name="equip_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="equip_serial" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="equip_purchasedate" Type="DateTime" Precision="3" />
+    <Property Name="equip_lastmaintenance" Type="DateTime" Precision="3" />
+    <Property Name="equip_type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="rm_id" Type="Int32" />
+    <NavigationProperty Name="classrooms" Relationship="Self.FK__classroom__equip__4D94879B" FromRole="equipment" ToRole="classroom" />
+    <NavigationProperty Name="classroom" Relationship="Self.FK__equipment__rm_id__4E88ABD4" FromRole="equipment" ToRole="classroom" />
+    <NavigationProperty Name="equipment_type" Relationship="Self.FK__equipment__equip__49C3F6B7" FromRole="equipment" ToRole="equipment_type" />
+  </EntityType>
+  <EntityType Name="equipment_type">
+    <Key>
+      <PropertyRef Name="equip_type" />
+    </Key>
+    <Property Name="equip_type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="equip_description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="equip_model" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+    <Property Name="equip_maintenace_interval" Type="Int32" />
+    <Property Name="course_id" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="equipments" Relationship="Self.FK__equipment__equip__49C3F6B7" FromRole="equipment_type" ToRole="equipment" />
+    <NavigationProperty Name="fitness_course" Relationship="Self.FK__equipment__cours__46E78A0C" FromRole="equipment_type" ToRole="fitness_course" />
+  </EntityType>
+  <EntityType Name="fitness_course">
+    <Key>
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="course_id" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="course_name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="course_description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="course_category" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+    <Property Name="course_duration" Type="Int32" />
+    <Property Name="course_prereq" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="classes" Relationship="Self.FK__class__course_id__534D60F1" FromRole="fitness_course" ToRole="class" />
+    <NavigationProperty Name="equipment_type" Relationship="Self.FK__equipment__cours__46E78A0C" FromRole="fitness_course" ToRole="equipment_type" />
+  </EntityType>
+  <EntityType Name="fitness_measure">
+    <Key>
+      <PropertyRef Name="document_id" />
+    </Key>
+    <Property Name="mem_id" Type="Int32" />
+    <Property Name="fit_date" Type="DateTime" Precision="3" />
+    <Property Name="fit_BMI" Type="Double" Nullable="false" />
+    <Property Name="fit_fat" Type="Double" Nullable="false" />
+    <Property Name="fit_weight" Type="Double" Nullable="false" />
+    <Property Name="document_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="member" Relationship="Self.FK__fitness_m__mem_i__412EB0B6" FromRole="fitness_measure" ToRole="members" />
+  </EntityType>
+  <EntityType Name="instructor">
+    <Key>
+      <PropertyRef Name="instructor_id" />
+    </Key>
+    <Property Name="instructor_id" Type="Int32" Nullable="false" />
+    <Property Name="emp_id" Type="Int32" />
+    <Property Name="cert_exams" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+    <Property Name="cert_exam_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="employee" Relationship="Self.FK__instructo__emp_i__5629CD9C" FromRole="instructor" ToRole="employees" />
+    <NavigationProperty Name="session_record" Relationship="Self.FK__session_r__instr__5AEE82B9" FromRole="instructor" ToRole="session_record" />
+  </EntityType>
+  <EntityType Name="item">
+    <Key>
+      <PropertyRef Name="item_id" />
+    </Key>
+    <Property Name="item_id" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="item_description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="item_price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="item_inventory" Type="Int32" />
+    <Property Name="item_reorder" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="vendorID" Type="Int32" />
+    <NavigationProperty Name="vendor" Relationship="Self.FK__item__vendorID__60A75C0F" FromRole="item" ToRole="vendor" />
+    <NavigationProperty Name="transactions" Relationship="Self.FK__transacti__item___6754599E" FromRole="item" ToRole="transaction" />
+  </EntityType>
+  <EntityType Name="mem_type">
+    <Key>
+      <PropertyRef Name="mem_type1" />
+    </Key>
+    <Property Name="mem_type1" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mem_fee" Type="Double" />
+    <Property Name="mem_discount" Type="Double" />
+    <NavigationProperty Name="members" Relationship="Self.FK__members__mem_typ__3F466844" FromRole="mem_type" ToRole="members" />
+  </EntityType>
+  <EntityType Name="member">
+    <Key>
+      <PropertyRef Name="mem_id" />
+    </Key>
+    <Property Name="mem_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mem_name" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mem_gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="mem_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="mem_dob" Type="DateTime" Precision="3" />
+    <Property Name="mem_datejoined" Type="DateTime" Precision="3" />
+    <Property Name="mem_initialweight" Type="Double" />
+    <Property Name="mem_address" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+    <Property Name="mem_parent" Type="Int32" />
+    <Property Name="mem_type" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="activity_record" Relationship="Self.FK__activity___mem_i__74AE54BC" FromRole="members" ToRole="activity_record" />
+    <NavigationProperty Name="fitness_measure" Relationship="Self.FK__fitness_m__mem_i__412EB0B6" FromRole="members" ToRole="fitness_measure" />
+    <NavigationProperty Name="mem_type1" Relationship="Self.FK__members__mem_typ__3F466844" FromRole="members" ToRole="mem_type" />
+    <NavigationProperty Name="members1" Relationship="Self.FK__members__mem_par__3E52440B" FromRole="members" ToRole="members1" />
+    <NavigationProperty Name="member1" Relationship="Self.FK__members__mem_par__3E52440B" FromRole="members1" ToRole="members" />
+    <NavigationProperty Name="session_record" Relationship="Self.FK__session_r__mem_i__59063A47" FromRole="members" ToRole="session_record" />
+    <NavigationProperty Name="transactions" Relationship="Self.FK__transacti__mem_i__66603565" FromRole="members" ToRole="transaction" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="Int32" Nullable="false" />
+    <Property Name="order_placed" Type="DateTime" Precision="3" />
+    <Property Name="order_recieved" Type="DateTime" Precision="3" />
+    <Property Name="order_item" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+    <Property Name="order_qty" Type="Int32" />
+    <Property Name="order_qty_recieved" Type="Int32" />
+    <Property Name="order_costperitem" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="emp_id" Type="Int32" />
+    <Property Name="order_total" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="employee" Relationship="Self.FK__order__emp_id__6383C8BA" FromRole="order" ToRole="employees" />
+  </EntityType>
+  <EntityType Name="return_transaction">
+    <Key>
+      <PropertyRef Name="return_id" />
+    </Key>
+    <Property Name="return_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="trans_id" Type="Int32" />
+    <Property Name="return_hist" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="transaction" Relationship="Self.FK__return_tr__trans__6FE99F9F" FromRole="return_transaction" ToRole="transaction" />
+  </EntityType>
+  <EntityType Name="session_record">
+    <Key>
+      <PropertyRef Name="session_id" />
+    </Key>
+    <Property Name="session_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mem_id" Type="Int32" />
+    <Property Name="class_id" Type="Int32" />
+    <Property Name="session_date" Type="DateTime" Precision="3" />
+    <Property Name="instructor_id" Type="Int32" />
+    <NavigationProperty Name="class" Relationship="Self.FK__session_r__class__59FA5E80" FromRole="session_record" ToRole="class" />
+    <NavigationProperty Name="instructor" Relationship="Self.FK__session_r__instr__5AEE82B9" FromRole="session_record" ToRole="instructor" />
+    <NavigationProperty Name="member" Relationship="Self.FK__session_r__mem_i__59063A47" FromRole="session_record" ToRole="members" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="transaction">
+    <Key>
+      <PropertyRef Name="trans_id" />
+    </Key>
+    <Property Name="trans_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mem_id" Type="Int32" />
+    <Property Name="trans_date" Type="DateTime" Precision="3" />
+    <Property Name="item_id" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="trans_quantity_purchased" Type="Int32" />
+    <Property Name="trans_purchase_price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="emp_id" Type="Int32" />
+    <Property Name="trans_purchase_total" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="employee" Relationship="Self.FK__transacti__emp_i__68487DD7" FromRole="transaction" ToRole="employees" />
+    <NavigationProperty Name="item" Relationship="Self.FK__transacti__item___6754599E" FromRole="transaction" ToRole="item" />
+    <NavigationProperty Name="member" Relationship="Self.FK__transacti__mem_i__66603565" FromRole="transaction" ToRole="members" />
+    <NavigationProperty Name="return_transaction" Relationship="Self.FK__return_tr__trans__6FE99F9F" FromRole="transaction" ToRole="return_transaction" />
+  </EntityType>
+  <EntityType Name="vendor">
+    <Key>
+      <PropertyRef Name="vendor_ID" />
+    </Key>
+    <Property Name="vendor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vendor_name" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+    <Property Name="vendor_address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="vendor_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="vendor_fax" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="items" Relationship="Self.FK__item__vendorID__60A75C0F" FromRole="vendor" ToRole="item" />
+  </EntityType>
+  <Association Name="FK__activity___mem_i__74AE54BC">
+    <End Role="members" Type="Self.member" Multiplicity="0..1" />
+    <End Role="activity_record" Type="Self.activity_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="activity_record">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__class__course_id__534D60F1">
+    <End Role="fitness_course" Type="Self.fitness_course" Multiplicity="0..1" />
+    <End Role="class" Type="Self.class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fitness_course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="class">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__class__rm_id__52593CB8">
+    <End Role="classroom" Type="Self.classroom" Multiplicity="0..1" />
+    <End Role="class" Type="Self.class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classroom">
+        <PropertyRef Name="rm_id" />
+      </Principal>
+      <Dependent Role="class">
+        <PropertyRef Name="rm_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__session_r__class__59FA5E80">
+    <End Role="class" Type="Self.class" Multiplicity="0..1" />
+    <End Role="session_record" Type="Self.session_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="session_record">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__classroom__equip__4D94879B">
+    <End Role="equipment" Type="Self.equipment" Multiplicity="0..1" />
+    <End Role="classroom" Type="Self.classroom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipment">
+        <PropertyRef Name="equip_id" />
+      </Principal>
+      <Dependent Role="classroom">
+        <PropertyRef Name="equip_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__equipment__rm_id__4E88ABD4">
+    <End Role="classroom" Type="Self.classroom" Multiplicity="0..1" />
+    <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classroom">
+        <PropertyRef Name="rm_id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="rm_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__instructo__emp_i__5629CD9C">
+    <End Role="employees" Type="Self.employee" Multiplicity="0..1" />
+    <End Role="instructor" Type="Self.instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="instructor">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__order__emp_id__6383C8BA">
+    <End Role="employees" Type="Self.employee" Multiplicity="0..1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__transacti__emp_i__68487DD7">
+    <End Role="employees" Type="Self.employee" Multiplicity="0..1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__equipment__equip__49C3F6B7">
+    <End Role="equipment_type" Type="Self.equipment_type" Multiplicity="0..1" />
+    <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipment_type">
+        <PropertyRef Name="equip_type" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="equip_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__equipment__cours__46E78A0C">
+    <End Role="fitness_course" Type="Self.fitness_course" Multiplicity="0..1" />
+    <End Role="equipment_type" Type="Self.equipment_type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fitness_course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="equipment_type">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__fitness_m__mem_i__412EB0B6">
+    <End Role="members" Type="Self.member" Multiplicity="0..1" />
+    <End Role="fitness_measure" Type="Self.fitness_measure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="fitness_measure">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__session_r__instr__5AEE82B9">
+    <End Role="instructor" Type="Self.instructor" Multiplicity="0..1" />
+    <End Role="session_record" Type="Self.session_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="instructor">
+        <PropertyRef Name="instructor_id" />
+      </Principal>
+      <Dependent Role="session_record">
+        <PropertyRef Name="instructor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__item__vendorID__60A75C0F">
+    <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+    <End Role="item" Type="Self.item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vendor">
+        <PropertyRef Name="vendor_ID" />
+      </Principal>
+      <Dependent Role="item">
+        <PropertyRef Name="vendorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__transacti__item___6754599E">
+    <End Role="item" Type="Self.item" Multiplicity="0..1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="item">
+        <PropertyRef Name="item_id" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__members__mem_typ__3F466844">
+    <End Role="mem_type" Type="Self.mem_type" Multiplicity="0..1" />
+    <End Role="members" Type="Self.member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mem_type">
+        <PropertyRef Name="mem_type1" />
+      </Principal>
+      <Dependent Role="members">
+        <PropertyRef Name="mem_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__members__mem_par__3E52440B">
+    <End Role="members" Type="Self.member" Multiplicity="0..1" />
+    <End Role="members1" Type="Self.member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="members1">
+        <PropertyRef Name="mem_parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__session_r__mem_i__59063A47">
+    <End Role="members" Type="Self.member" Multiplicity="0..1" />
+    <End Role="session_record" Type="Self.session_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="session_record">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__transacti__mem_i__66603565">
+    <End Role="members" Type="Self.member" Multiplicity="0..1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__return_tr__trans__6FE99F9F">
+    <End Role="transaction" Type="Self.transaction" Multiplicity="0..1" />
+    <End Role="return_transaction" Type="Self.return_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transaction">
+        <PropertyRef Name="trans_id" />
+      </Principal>
+      <Dependent Role="return_transaction">
+        <PropertyRef Name="trans_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="activity_record" EntityType="Self.activity_record" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="classes" EntityType="Self.class" />
+    <EntitySet Name="classrooms" EntityType="Self.classroom" />
+    <EntitySet Name="employees" EntityType="Self.employee" />
+    <EntitySet Name="equipments" EntityType="Self.equipment" />
+    <EntitySet Name="equipment_type" EntityType="Self.equipment_type" />
+    <EntitySet Name="fitness_course" EntityType="Self.fitness_course" />
+    <EntitySet Name="fitness_measure" EntityType="Self.fitness_measure" />
+    <EntitySet Name="instructors" EntityType="Self.instructor" />
+    <EntitySet Name="items" EntityType="Self.item" />
+    <EntitySet Name="mem_type" EntityType="Self.mem_type" />
+    <EntitySet Name="members" EntityType="Self.member" />
+    <EntitySet Name="orders" EntityType="Self.order" />
+    <EntitySet Name="return_transaction" EntityType="Self.return_transaction" />
+    <EntitySet Name="session_record" EntityType="Self.session_record" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="transactions" EntityType="Self.transaction" />
+    <EntitySet Name="vendors" EntityType="Self.vendor" />
+    <AssociationSet Name="FK__activity___mem_i__74AE54BC" Association="Self.FK__activity___mem_i__74AE54BC">
+      <End Role="members" EntitySet="members" />
+      <End Role="activity_record" EntitySet="activity_record" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__class__course_id__534D60F1" Association="Self.FK__class__course_id__534D60F1">
+      <End Role="fitness_course" EntitySet="fitness_course" />
+      <End Role="class" EntitySet="classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__class__rm_id__52593CB8" Association="Self.FK__class__rm_id__52593CB8">
+      <End Role="classroom" EntitySet="classrooms" />
+      <End Role="class" EntitySet="classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__session_r__class__59FA5E80" Association="Self.FK__session_r__class__59FA5E80">
+      <End Role="class" EntitySet="classes" />
+      <End Role="session_record" EntitySet="session_record" />
+    </AssociationSet>
+    <AssociationSet Name="FK__classroom__equip__4D94879B" Association="Self.FK__classroom__equip__4D94879B">
+      <End Role="equipment" EntitySet="equipments" />
+      <End Role="classroom" EntitySet="classrooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK__equipment__rm_id__4E88ABD4" Association="Self.FK__equipment__rm_id__4E88ABD4">
+      <End Role="classroom" EntitySet="classrooms" />
+      <End Role="equipment" EntitySet="equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__instructo__emp_i__5629CD9C" Association="Self.FK__instructo__emp_i__5629CD9C">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="instructor" EntitySet="instructors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__order__emp_id__6383C8BA" Association="Self.FK__order__emp_id__6383C8BA">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="order" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__transacti__emp_i__68487DD7" Association="Self.FK__transacti__emp_i__68487DD7">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="transaction" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__equipment__equip__49C3F6B7" Association="Self.FK__equipment__equip__49C3F6B7">
+      <End Role="equipment_type" EntitySet="equipment_type" />
+      <End Role="equipment" EntitySet="equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__equipment__cours__46E78A0C" Association="Self.FK__equipment__cours__46E78A0C">
+      <End Role="fitness_course" EntitySet="fitness_course" />
+      <End Role="equipment_type" EntitySet="equipment_type" />
+    </AssociationSet>
+    <AssociationSet Name="FK__fitness_m__mem_i__412EB0B6" Association="Self.FK__fitness_m__mem_i__412EB0B6">
+      <End Role="members" EntitySet="members" />
+      <End Role="fitness_measure" EntitySet="fitness_measure" />
+    </AssociationSet>
+    <AssociationSet Name="FK__session_r__instr__5AEE82B9" Association="Self.FK__session_r__instr__5AEE82B9">
+      <End Role="instructor" EntitySet="instructors" />
+      <End Role="session_record" EntitySet="session_record" />
+    </AssociationSet>
+    <AssociationSet Name="FK__item__vendorID__60A75C0F" Association="Self.FK__item__vendorID__60A75C0F">
+      <End Role="vendor" EntitySet="vendors" />
+      <End Role="item" EntitySet="items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__transacti__item___6754599E" Association="Self.FK__transacti__item___6754599E">
+      <End Role="item" EntitySet="items" />
+      <End Role="transaction" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__members__mem_typ__3F466844" Association="Self.FK__members__mem_typ__3F466844">
+      <End Role="mem_type" EntitySet="mem_type" />
+      <End Role="members" EntitySet="members" />
+    </AssociationSet>
+    <AssociationSet Name="FK__members__mem_par__3E52440B" Association="Self.FK__members__mem_par__3E52440B">
+      <End Role="members" EntitySet="members" />
+      <End Role="members1" EntitySet="members" />
+    </AssociationSet>
+    <AssociationSet Name="FK__session_r__mem_i__59063A47" Association="Self.FK__session_r__mem_i__59063A47">
+      <End Role="members" EntitySet="members" />
+      <End Role="session_record" EntitySet="session_record" />
+    </AssociationSet>
+    <AssociationSet Name="FK__transacti__mem_i__66603565" Association="Self.FK__transacti__mem_i__66603565">
+      <End Role="members" EntitySet="members" />
+      <End Role="transaction" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__return_tr__trans__6FE99F9F" Association="Self.FK__return_tr__trans__6FE99F9F">
+      <End Role="transaction" EntitySet="transactions" />
+      <End Role="return_transaction" EntitySet="return_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

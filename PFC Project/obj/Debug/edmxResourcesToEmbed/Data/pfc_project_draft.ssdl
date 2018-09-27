@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pfc_project_draftModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'pfc_project_draft.dbo.activity_done' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="activity_done">
+          <Property Name="record_id" Type="int" />
+          <Property Name="activity" Type="varchar" MaxLength="90" />
+          <Property Name="timespent" Type="decimal" Precision="2" Scale="2" />
+        </EntityType>-->
+  <EntityType Name="activity_record">
+    <Key>
+      <PropertyRef Name="record_id" />
+    </Key>
+    <Property Name="record_id" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime" />
+    <Property Name="mem_id" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'pfc_project_draft.dbo.activity_type' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="activity_type">
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="class_schedule" Type="char" MaxLength="3" />
+    <Property Name="class_loc" Type="varchar" MaxLength="15" />
+    <Property Name="class_starttime" Type="time" Precision="7" />
+    <Property Name="class_endtime" Type="time" Precision="7" />
+    <Property Name="rm_id" Type="int" />
+    <Property Name="course_id" Type="varchar" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="classroom">
+    <Key>
+      <PropertyRef Name="rm_id" />
+    </Key>
+    <Property Name="rm_id" Type="int" Nullable="false" />
+    <Property Name="rm_capacity" Type="int" Nullable="false" />
+    <Property Name="equip_id" Type="int" />
+  </EntityType>
+  <EntityType Name="employees">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_name" Type="varchar" MaxLength="90" Nullable="false" />
+    <Property Name="emp_address" Type="varchar" MaxLength="255" />
+    <Property Name="emp_phone" Type="varchar" MaxLength="15" />
+    <Property Name="emp_hiredate" Type="datetime" />
+    <Property Name="emp_position" Type="varchar" MaxLength="15" />
+    <Property Name="emp_lasthiredate" Type="datetime" />
+    <Property Name="emp_other" Type="varchar" MaxLength="150" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="equipment">
+    <Key>
+      <PropertyRef Name="equip_id" />
+    </Key>
+    <Property Name="equip_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="equip_serial" Type="varchar" MaxLength="90" Nullable="false" />
+    <Property Name="equip_purchasedate" Type="datetime" />
+    <Property Name="equip_lastmaintenance" Type="datetime" />
+    <Property Name="equip_type" Type="varchar" MaxLength="15" />
+    <Property Name="rm_id" Type="int" />
+  </EntityType>
+  <EntityType Name="equipment_type">
+    <Key>
+      <PropertyRef Name="equip_type" />
+    </Key>
+    <Property Name="equip_type" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="equip_description" Type="varchar" MaxLength="255" />
+    <Property Name="equip_model" Type="varchar" MaxLength="90" />
+    <Property Name="equip_maintenace_interval" Type="int" />
+    <Property Name="course_id" Type="varchar" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="fitness_course">
+    <Key>
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="course_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="course_name" Type="varchar" MaxLength="15" />
+    <Property Name="course_description" Type="varchar" MaxLength="255" />
+    <Property Name="course_category" Type="varchar" MaxLength="90" />
+    <Property Name="course_duration" Type="int" />
+    <Property Name="course_prereq" Type="varchar" MaxLength="12" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="fitness_measure">
+    <Key>
+      <PropertyRef Name="document_id" />
+    </Key>
+    <Property Name="mem_id" Type="int" />
+    <Property Name="fit_date" Type="datetime" />
+    <Property Name="fit_BMI" Type="float" Nullable="false" />
+    <Property Name="fit_fat" Type="float" Nullable="false" />
+    <Property Name="fit_weight" Type="float" Nullable="false" />
+    <Property Name="document_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="instructor">
+    <Key>
+      <PropertyRef Name="instructor_id" />
+    </Key>
+    <Property Name="instructor_id" Type="int" Nullable="false" />
+    <Property Name="emp_id" Type="int" />
+    <Property Name="cert_exams" Type="varchar" MaxLength="90" />
+    <Property Name="cert_exam_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="item">
+    <Key>
+      <PropertyRef Name="item_id" />
+    </Key>
+    <Property Name="item_id" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="item_description" Type="varchar" MaxLength="255" />
+    <Property Name="item_price" Type="money" />
+    <Property Name="item_inventory" Type="int" />
+    <Property Name="item_reorder" Type="varchar" MaxLength="3" />
+    <Property Name="vendorID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'pfc_project_draft.dbo.item_reorder' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="item_reorder">
+          <Property Name="item_id" Type="nvarchar" MaxLength="15" />
+          <Property Name="reorder_qty" Type="int" />
+        </EntityType>-->
+  <EntityType Name="mem_type">
+    <Key>
+      <PropertyRef Name="mem_type" />
+    </Key>
+    <Property Name="mem_type" Type="varchar" MaxLength="90" Nullable="false" />
+    <Property Name="mem_fee" Type="float" />
+    <Property Name="mem_discount" Type="float" />
+  </EntityType>
+  <EntityType Name="members">
+    <Key>
+      <PropertyRef Name="mem_id" />
+    </Key>
+    <Property Name="mem_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mem_name" Type="varchar" MaxLength="90" Nullable="false" />
+    <Property Name="mem_gender" Type="varchar" MaxLength="1" />
+    <Property Name="mem_phone" Type="varchar" MaxLength="15" />
+    <Property Name="mem_dob" Type="datetime" />
+    <Property Name="mem_datejoined" Type="datetime" />
+    <Property Name="mem_initialweight" Type="float" />
+    <Property Name="mem_address" Type="varchar" MaxLength="90" />
+    <Property Name="mem_parent" Type="int" />
+    <Property Name="mem_type" Type="varchar" MaxLength="90" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="order_placed" Type="datetime" />
+    <Property Name="order_recieved" Type="datetime" />
+    <Property Name="order_item" Type="varchar" MaxLength="90" />
+    <Property Name="order_qty" Type="int" />
+    <Property Name="order_qty_recieved" Type="int" />
+    <Property Name="order_costperitem" Type="money" />
+    <Property Name="emp_id" Type="int" />
+    <Property Name="order_total" Type="money" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="return_transaction">
+    <Key>
+      <PropertyRef Name="return_id" />
+    </Key>
+    <Property Name="return_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="trans_id" Type="int" />
+    <Property Name="return_hist" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'pfc_project_draft.dbo.sale' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="sale">
+          <Property Name="item_id" Type="nvarchar" MaxLength="15" />
+          <Property Name="trans_id" Type="int" />
+          <Property Name="trans_quantity_purchased" Type="int" />
+        </EntityType>-->
+  <EntityType Name="session_record">
+    <Key>
+      <PropertyRef Name="session_id" />
+    </Key>
+    <Property Name="session_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mem_id" Type="int" />
+    <Property Name="class_id" Type="int" />
+    <Property Name="session_date" Type="datetime" />
+    <Property Name="instructor_id" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="transaction">
+    <Key>
+      <PropertyRef Name="trans_id" />
+    </Key>
+    <Property Name="trans_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mem_id" Type="int" />
+    <Property Name="trans_date" Type="datetime" />
+    <Property Name="item_id" Type="nvarchar" MaxLength="15" />
+    <Property Name="trans_quantity_purchased" Type="int" />
+    <Property Name="trans_purchase_price" Type="money" />
+    <Property Name="emp_id" Type="int" />
+    <Property Name="trans_purchase_total" Type="money" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="vendor">
+    <Key>
+      <PropertyRef Name="vendor_ID" />
+    </Key>
+    <Property Name="vendor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vendor_name" Type="varchar" MaxLength="90" />
+    <Property Name="vendor_address" Type="varchar" MaxLength="255" />
+    <Property Name="vendor_phone" Type="varchar" MaxLength="15" />
+    <Property Name="vendor_fax" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <Association Name="FK__activity___mem_i__74AE54BC">
+    <End Role="members" Type="Self.members" Multiplicity="0..1" />
+    <End Role="activity_record" Type="Self.activity_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="activity_record">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+error 6004: The table 'pfc_project_draft.dbo.activity_done' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__activity___recor__76969D2E" />-->
+  <Association Name="FK__class__course_id__534D60F1">
+    <End Role="fitness_course" Type="Self.fitness_course" Multiplicity="0..1" />
+    <End Role="class" Type="Self.class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fitness_course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="class">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__class__rm_id__52593CB8">
+    <End Role="classroom" Type="Self.classroom" Multiplicity="0..1" />
+    <End Role="class" Type="Self.class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classroom">
+        <PropertyRef Name="rm_id" />
+      </Principal>
+      <Dependent Role="class">
+        <PropertyRef Name="rm_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__classroom__equip__4D94879B">
+    <End Role="equipment" Type="Self.equipment" Multiplicity="0..1" />
+    <End Role="classroom" Type="Self.classroom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipment">
+        <PropertyRef Name="equip_id" />
+      </Principal>
+      <Dependent Role="classroom">
+        <PropertyRef Name="equip_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__equipment__cours__46E78A0C">
+    <End Role="fitness_course" Type="Self.fitness_course" Multiplicity="0..1" />
+    <End Role="equipment_type" Type="Self.equipment_type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fitness_course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="equipment_type">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__equipment__equip__49C3F6B7">
+    <End Role="equipment_type" Type="Self.equipment_type" Multiplicity="0..1" />
+    <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipment_type">
+        <PropertyRef Name="equip_type" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="equip_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__equipment__rm_id__4E88ABD4">
+    <End Role="classroom" Type="Self.classroom" Multiplicity="0..1" />
+    <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classroom">
+        <PropertyRef Name="rm_id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="rm_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__fitness_m__mem_i__412EB0B6">
+    <End Role="members" Type="Self.members" Multiplicity="0..1" />
+    <End Role="fitness_measure" Type="Self.fitness_measure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="fitness_measure">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__instructo__emp_i__5629CD9C">
+    <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+    <End Role="instructor" Type="Self.instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="instructor">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__item__vendorID__60A75C0F">
+    <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+    <End Role="item" Type="Self.item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vendor">
+        <PropertyRef Name="vendor_ID" />
+      </Principal>
+      <Dependent Role="item">
+        <PropertyRef Name="vendorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+error 6004: The table 'pfc_project_draft.dbo.item_reorder' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__item_reor__item___6D0D32F4" />-->
+  <Association Name="FK__members__mem_par__3E52440B">
+    <End Role="members" Type="Self.members" Multiplicity="0..1" />
+    <End Role="members1" Type="Self.members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="members1">
+        <PropertyRef Name="mem_parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__members__mem_typ__3F466844">
+    <End Role="mem_type" Type="Self.mem_type" Multiplicity="0..1" />
+    <End Role="members" Type="Self.members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mem_type">
+        <PropertyRef Name="mem_type" />
+      </Principal>
+      <Dependent Role="members">
+        <PropertyRef Name="mem_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__order__emp_id__6383C8BA">
+    <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__return_tr__trans__6FE99F9F">
+    <End Role="transaction" Type="Self.transaction" Multiplicity="0..1" />
+    <End Role="return_transaction" Type="Self.return_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transaction">
+        <PropertyRef Name="trans_id" />
+      </Principal>
+      <Dependent Role="return_transaction">
+        <PropertyRef Name="trans_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+error 6004: The table 'pfc_project_draft.dbo.sale' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__sale__item_id__6A30C649" />-->
+  <!--Errors Found During Generation:
+error 6004: The table 'pfc_project_draft.dbo.sale' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__sale__trans_id__6B24EA82" />-->
+  <Association Name="FK__session_r__class__59FA5E80">
+    <End Role="class" Type="Self.class" Multiplicity="0..1" />
+    <End Role="session_record" Type="Self.session_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="session_record">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__session_r__instr__5AEE82B9">
+    <End Role="instructor" Type="Self.instructor" Multiplicity="0..1" />
+    <End Role="session_record" Type="Self.session_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="instructor">
+        <PropertyRef Name="instructor_id" />
+      </Principal>
+      <Dependent Role="session_record">
+        <PropertyRef Name="instructor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__session_r__mem_i__59063A47">
+    <End Role="members" Type="Self.members" Multiplicity="0..1" />
+    <End Role="session_record" Type="Self.session_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="session_record">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__transacti__emp_i__68487DD7">
+    <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__transacti__item___6754599E">
+    <End Role="item" Type="Self.item" Multiplicity="0..1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="item">
+        <PropertyRef Name="item_id" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__transacti__mem_i__66603565">
+    <End Role="members" Type="Self.members" Multiplicity="0..1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="mem_id" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="mem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="pfc_project_draftModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="activity_record" EntityType="Self.activity_record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="classroom" EntityType="Self.classroom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipment" EntityType="Self.equipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipment_type" EntityType="Self.equipment_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fitness_course" EntityType="Self.fitness_course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fitness_measure" EntityType="Self.fitness_measure" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="instructor" EntityType="Self.instructor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="item" EntityType="Self.item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mem_type" EntityType="Self.mem_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="members" EntityType="Self.members" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="return_transaction" EntityType="Self.return_transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="session_record" EntityType="Self.session_record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transaction" EntityType="Self.transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vendor" EntityType="Self.vendor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__activity___mem_i__74AE54BC" Association="Self.FK__activity___mem_i__74AE54BC">
+      <End Role="members" EntitySet="members" />
+      <End Role="activity_record" EntitySet="activity_record" />
+    </AssociationSet>
+    <AssociationSet Name="FK__class__course_id__534D60F1" Association="Self.FK__class__course_id__534D60F1">
+      <End Role="fitness_course" EntitySet="fitness_course" />
+      <End Role="class" EntitySet="class" />
+    </AssociationSet>
+    <AssociationSet Name="FK__class__rm_id__52593CB8" Association="Self.FK__class__rm_id__52593CB8">
+      <End Role="classroom" EntitySet="classroom" />
+      <End Role="class" EntitySet="class" />
+    </AssociationSet>
+    <AssociationSet Name="FK__classroom__equip__4D94879B" Association="Self.FK__classroom__equip__4D94879B">
+      <End Role="equipment" EntitySet="equipment" />
+      <End Role="classroom" EntitySet="classroom" />
+    </AssociationSet>
+    <AssociationSet Name="FK__equipment__cours__46E78A0C" Association="Self.FK__equipment__cours__46E78A0C">
+      <End Role="fitness_course" EntitySet="fitness_course" />
+      <End Role="equipment_type" EntitySet="equipment_type" />
+    </AssociationSet>
+    <AssociationSet Name="FK__equipment__equip__49C3F6B7" Association="Self.FK__equipment__equip__49C3F6B7">
+      <End Role="equipment_type" EntitySet="equipment_type" />
+      <End Role="equipment" EntitySet="equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__equipment__rm_id__4E88ABD4" Association="Self.FK__equipment__rm_id__4E88ABD4">
+      <End Role="classroom" EntitySet="classroom" />
+      <End Role="equipment" EntitySet="equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__fitness_m__mem_i__412EB0B6" Association="Self.FK__fitness_m__mem_i__412EB0B6">
+      <End Role="members" EntitySet="members" />
+      <End Role="fitness_measure" EntitySet="fitness_measure" />
+    </AssociationSet>
+    <AssociationSet Name="FK__instructo__emp_i__5629CD9C" Association="Self.FK__instructo__emp_i__5629CD9C">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="instructor" EntitySet="instructor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__item__vendorID__60A75C0F" Association="Self.FK__item__vendorID__60A75C0F">
+      <End Role="vendor" EntitySet="vendor" />
+      <End Role="item" EntitySet="item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__members__mem_par__3E52440B" Association="Self.FK__members__mem_par__3E52440B">
+      <End Role="members" EntitySet="members" />
+      <End Role="members1" EntitySet="members" />
+    </AssociationSet>
+    <AssociationSet Name="FK__members__mem_typ__3F466844" Association="Self.FK__members__mem_typ__3F466844">
+      <End Role="mem_type" EntitySet="mem_type" />
+      <End Role="members" EntitySet="members" />
+    </AssociationSet>
+    <AssociationSet Name="FK__order__emp_id__6383C8BA" Association="Self.FK__order__emp_id__6383C8BA">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__return_tr__trans__6FE99F9F" Association="Self.FK__return_tr__trans__6FE99F9F">
+      <End Role="transaction" EntitySet="transaction" />
+      <End Role="return_transaction" EntitySet="return_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK__session_r__class__59FA5E80" Association="Self.FK__session_r__class__59FA5E80">
+      <End Role="class" EntitySet="class" />
+      <End Role="session_record" EntitySet="session_record" />
+    </AssociationSet>
+    <AssociationSet Name="FK__session_r__instr__5AEE82B9" Association="Self.FK__session_r__instr__5AEE82B9">
+      <End Role="instructor" EntitySet="instructor" />
+      <End Role="session_record" EntitySet="session_record" />
+    </AssociationSet>
+    <AssociationSet Name="FK__session_r__mem_i__59063A47" Association="Self.FK__session_r__mem_i__59063A47">
+      <End Role="members" EntitySet="members" />
+      <End Role="session_record" EntitySet="session_record" />
+    </AssociationSet>
+    <AssociationSet Name="FK__transacti__emp_i__68487DD7" Association="Self.FK__transacti__emp_i__68487DD7">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="transaction" EntitySet="transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK__transacti__item___6754599E" Association="Self.FK__transacti__item___6754599E">
+      <End Role="item" EntitySet="item" />
+      <End Role="transaction" EntitySet="transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK__transacti__mem_i__66603565" Association="Self.FK__transacti__mem_i__66603565">
+      <End Role="members" EntitySet="members" />
+      <End Role="transaction" EntitySet="transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,8 +1,6 @@
 ﻿using PFC_Project.Data;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PFC_Project.Controllers
@@ -44,7 +42,7 @@ namespace PFC_Project.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return View(member);
             }

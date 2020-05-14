@@ -8,6 +8,8 @@ namespace PFC_Project
     {
         public void Configuration(IAppBuilder app)
         {
+//configuring github sync
+
             ConfigureAuth(app);
         }
     }

@@ -1,5 +1,5 @@
 
-# Project Title
+# Paducah Fitness Center ( .NET Application Project )
 
 **Description**:  This is a dotnet application created as part of the graduate program Paducah Fitness Center web application project.
 This was built using detailed conceptual model of what a typical fitness company user requirements are, and what are all the entities envolved. 
